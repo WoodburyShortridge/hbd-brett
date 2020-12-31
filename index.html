@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
     <link type="text/css" rel="stylesheet" href="main.css">
     <style>
-        body{
-            /*touch-action: none;*/
+        body, html {
+            overflow: hidden
         }
 
         #container {
@@ -227,6 +227,7 @@
 	}
 
 	function onMouseWheel( ev ) {
+		ev.preventDefault();
 		const amount = ev.deltaY;
 
 		if ( amount === 0 ) return;
@@ -239,8 +240,9 @@
         touchStart.y = event.touches[0].pageY;
     }
 
-    function onTouchMove() {
-		const amount = touchStart.y - event.touches[0].pageY;
+    function onTouchMove(ev) {
+		ev.preventDefault();
+		const amount = touchStart.y - ev.touches[0].pageY;
         if ( amount === 0 ) return;
         const dir = amount / Math.abs( amount );
         zoomspeed = dir / 10;
