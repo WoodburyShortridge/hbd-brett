@@ -39,10 +39,10 @@
 
 <script type="module">
 
-	import * as THREE from './scripts/three.module.js';
-    import { EffectComposer } from './scripts/EffectComposer.js';
-    import { RenderPass } from './scripts/RenderPass.js';
-    import { GlitchPass } from './scripts/GlitchPass.js';
+	import * as THREE from './three/build/three.module.js';
+    import { EffectComposer } from './three/examples/jsm/postprocessing/EffectComposer.js';
+    import { RenderPass } from './three/examples/jsm/postprocessing/RenderPass.js';
+    import { GlitchPass } from './three/examples/jsm/postprocessing/GlitchPass.js';
 
 	const NEAR = 1e-6, FAR = 1e27;
 	let SCREEN_WIDTH = window.innerWidth;
