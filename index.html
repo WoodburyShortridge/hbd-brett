@@ -26,6 +26,7 @@
             width: 100vw;
             justify-content: center;
             align-items: center;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -55,6 +56,9 @@
 	const objects = {};
 	const spheres = [];
 	let running = false;
+    let touchStart = {x:0, y:0};
+
+    const clickTrigger = document.getElementById('click');
 
 	const labeldata = [
 		{ size: .01, scale: 0.0001, label: "Happy Birthday Brett)" }, // FIXME - triangulating text fails at this size, so we scale instead
@@ -74,8 +78,8 @@
 		{ size: 1e19, scale: 1.0, label: "Happy Birthday Brett" }
 	];
 
-	window.addEventListener( 'click', onClick, false );
-	window.addEventListener( 'touchstart', onClick, false);
+    clickTrigger.addEventListener( 'click', onClick, false );
+    clickTrigger.addEventListener( 'touchstart', onClick, false);
 
 
 	function init() {
@@ -90,8 +94,8 @@
 
 		window.addEventListener( 'mousemove', onMouseMove, false );
 		window.addEventListener( 'wheel', onMouseWheel, false );
-        window.addEventListener('touchmove', onMouseWheel, false);
-		window.addEventListener( 'touchstart', onMouseMove, false);
+		window.addEventListener( 'touchstart', onTouchStart, false);
+        window.addEventListener('touchmove', onTouchMove, false);
 	}
 
 	function initView( scene, name, logDepthBuf ) {
@@ -224,20 +228,35 @@
 
 	function onMouseWheel( ev ) {
 		const amount = ev.deltaY;
+
 		if ( amount === 0 ) return;
 		const dir = amount / Math.abs( amount );
 		zoomspeed = dir / 10;
         minzoomspeed = 0.001;
 	}
 
+	function onTouchStart() {
+        touchStart.y = event.touches[0].pageY;
+    }
+
+    function onTouchMove() {
+		const amount = touchStart.y - event.touches[0].pageY;
+        if ( amount === 0 ) return;
+        const dir = amount / Math.abs( amount );
+        zoomspeed = dir / 10;
+        minzoomspeed = 0.001;
+    }
+
     function onClick( ) {
 		if (!running) {
 			running = true;
-			const clickTitle = document.getElementById('click');
-			clickTitle.remove();
+			clickTrigger.remove();
             init();
-            const audio = document.getElementById('rainbow_audio');
-            audio.play();
+
+            setTimeout(() => {
+                const audio = document.getElementById('rainbow_audio');
+                audio.play();
+            }, 1000);
         }
     }
 </script>
