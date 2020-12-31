@@ -83,6 +83,10 @@
 
 
 	function init() {
+
+        const audio = document.getElementById('rainbow_audio');
+        audio.play();
+
 		container = document.getElementById( 'container' );
 
 		const loader = new THREE.FontLoader();
@@ -254,11 +258,6 @@
 			running = true;
 			clickTrigger.remove();
             init();
-
-            setTimeout(() => {
-                const audio = document.getElementById('rainbow_audio');
-                audio.play();
-            }, 1000);
         }
     }
 </script>
