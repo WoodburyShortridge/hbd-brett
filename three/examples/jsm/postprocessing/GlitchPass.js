@@ -70,6 +70,10 @@ GlitchPass.prototype = Object.assign( Object.create( Pass.prototype ), {
 
 		} else if ( this.goWild == false ) {
 
+			if (Math.random() < 0.1) {
+				this.curF ++;
+			}
+
 			this.uniforms[ 'byp' ].value = 1;
 
 		}
