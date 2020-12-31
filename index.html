@@ -75,7 +75,7 @@
 	];
 
 	window.addEventListener( 'click', onClick, false );
-	window.addEventListener("touchstart", onClick, false);
+	window.addEventListener( 'touchstart', onClick, false);
 
 
 	function init() {
@@ -90,6 +90,8 @@
 
 		window.addEventListener( 'mousemove', onMouseMove, false );
 		window.addEventListener( 'wheel', onMouseWheel, false );
+        window.addEventListener('touchmove', onMouseWheel, false);
+		window.addEventListener( 'touchstart', onMouseMove, false);
 	}
 
 	function initView( scene, name, logDepthBuf ) {
