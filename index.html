@@ -35,7 +35,7 @@
 <div id="container">
     <h1 id="click">click / tap</h1>
     <div id="container_logzbuf"></div>
-    <audio style="display: none;" src="./data/rainbow.mp3" id="rainbow_audio"></audio>
+    <audio style="display: none;" src="./data/rainbow2.m4a" id="rainbow_audio" loop></audio>
 </div>
 
 <script type="module">
@@ -146,12 +146,11 @@
 
 		const geometry = new THREE.SphereBufferGeometry( 0.5, 24, 12 );
 
-
-		const sphereMaterial = new THREE.MeshBasicMaterial({
-            map: THREE.ImageUtils.loadTexture('./data/material.JPG')
-        });
-
 		for ( let i = 0; i < labeldata.length; i ++ ) {
+
+            const sphereMaterial = new THREE.MeshBasicMaterial({
+                map: THREE.ImageUtils.loadTexture(`./data/brett${Math.floor(Math.random() * 6) + 1}.png`)
+            });
 
 			const scale = labeldata[ i ].scale || 1;
 
